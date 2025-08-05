@@ -23,7 +23,7 @@ public class BookDTO {
         this.title = book.getTitle();
         this.synopsis = book.getSynopsis();
         this.imageUrl = book.getImageUrl();
-        this.chapters = book.getChapters().stream().map(ChapterDTO::new).collect(Collectors.toList());
+        this.chapters = book.getChapters().stream().map(ChapterDTO::new).toList();
         this.tags = book.getTags();
     }
 }
