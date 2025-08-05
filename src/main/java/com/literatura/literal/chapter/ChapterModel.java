@@ -1,5 +1,6 @@
 package com.literatura.literal.chapter;
 
+import com.literatura.literal.book.BookModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,13 @@ public class ChapterModel {
     private UUID id;
 
     @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private BookModel book;
+
 }
