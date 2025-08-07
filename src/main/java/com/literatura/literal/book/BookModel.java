@@ -2,17 +2,11 @@ package com.literatura.literal.book;
 
 import com.literatura.literal.chapter.ChapterModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "book")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class BookModel {
 
     @Id
@@ -33,6 +27,33 @@ public class BookModel {
     @ElementCollection
     private List<String> tags;
 
+    protected BookModel(){}
 
+    public BookModel(String title, String synopsis, String imageUrl, List<ChapterModel> chapters, List<String> tags) {
+        this.title = title;
+        this.synopsis = synopsis;
+        this.imageUrl = imageUrl;
+        this.chapters = chapters;
+        this.tags = tags;
+    }
 
+    public String getTitle() {return title;}
+
+    public void setTitle(String title) {this.title = title;}
+
+    public String getSynopsis() {return synopsis;}
+
+    public void setSynopsis (String synopsis) {this.synopsis = synopsis;}
+
+    public String getImageUrl() {return imageUrl;}
+
+    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
+
+    public List<ChapterModel> getChapters() {return chapters;}
+
+    public void setChapters(List<ChapterModel> chapters) {this.chapters = chapters;}
+
+    public List<String> getTags() {return tags;}
+
+    public void setTags(List<String> tags) {this.tags = tags;}
 }
