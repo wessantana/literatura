@@ -27,22 +27,14 @@ public class BookDTO {
 
     public String getTitle() {return title;}
 
-    public void setTitle(String title) {this.title = title;}
-
     public String getSynopsis() {return synopsis;}
-
-    public void setSynopsis (String synopsis) {this.synopsis = synopsis;}
 
     public String getImageUrl() {return imageUrl;}
 
-    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
-
     public List<ChapterDTO> getChapters() {return chapters;}
 
-    public void setChapters(List<ChapterDTO> chapters) {this.chapters = chapters;}
 
     public List<String> getTags() {return tags;}
 
-    public void setTags(List<String> tags) {this.tags = tags;}
 }
 
