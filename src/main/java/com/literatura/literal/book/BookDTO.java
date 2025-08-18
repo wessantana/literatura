@@ -18,7 +18,10 @@ public class BookDTO {
         this.title = book.getTitle();
         this.synopsis = book.getSynopsis();
         this.imageUrl = book.getImageUrl();
-        this.chapters = book.getChapters().stream().map(ChapterDTO::new).toList();
+        this.chapters = book.getChapters()
+                .stream()
+                .map(chapter -> new ChapterDTO(chapter, this))
+                .toList();
         this.tags = book.getTags();
     }
 
