@@ -16,6 +16,10 @@ public class BookService {
         return repository.findAll().stream().map(this::convertBookModelToDTO).toList();
     }
 
+    public void addBook(BookModel book) {
+        repository.save(book);
+    }
+
     private BookDTO convertBookModelToDTO(BookModel book) {
         return new BookDTO(book);
     }
