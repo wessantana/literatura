@@ -37,6 +37,8 @@ public class BookModel {
         this.tags = tags;
     }
 
+    public UUID getId(){return id;}
+
     public String getTitle() {return title;}
 
     public void setTitle(String title) {this.title = title;}
