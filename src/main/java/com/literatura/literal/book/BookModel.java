@@ -29,13 +29,14 @@ public class BookModel {
 
     protected BookModel(){}
 
-    public BookModel(String title, String synopsis, String imageUrl, List<ChapterModel> chapters, List<String> tags) {
+    public BookModel(String title, String synopsis, String imageUrl, List<String> tags) {
         this.title = title;
         this.synopsis = synopsis;
         this.imageUrl = imageUrl;
-        this.chapters = chapters;
         this.tags = tags;
     }
+
+    public UUID getId(){return id;}
 
     public String getTitle() {return title;}
 
