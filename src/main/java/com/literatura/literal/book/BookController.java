@@ -14,7 +14,7 @@ public class BookController {
     @Autowired
     BookService service;
 
-    @GetMapping()
+    @GetMapping
     public List<BookDTO> getAllBooks() {
         return service.getAllBooks();
     }
@@ -24,7 +24,7 @@ public class BookController {
         return service.getBookById(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public void addBook(@RequestBody BookModel book) {
         service.addBook(book);
     }
