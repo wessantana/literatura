@@ -24,8 +24,13 @@ public class BookController {
         return service.getBookById(id);
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping("/add")
     public void addBook(@RequestBody BookModel book) {
         service.addBook(book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBookById(@PathVariable UUID id) {
+        service.deleteBookById(id);
     }
 }

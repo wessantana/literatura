@@ -26,6 +26,9 @@ public class BookService {
         repository.save(book);
     }
 
+    // implementar retorno de status code correto e talvez algum content
+    public void deleteBookById(UUID id) { repository.deleteById(id); }
+
     private BookDTO convertBookModelToDTO(BookModel book) {
         return new BookDTO(book);
     }
