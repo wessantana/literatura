@@ -1,5 +1,7 @@
 package com.literatura.literal.book;
 
+import com.literatura.literal.chapter.ChapterDTO;
+import com.literatura.literal.chapter.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,25 +14,33 @@ import java.util.UUID;
 public class BookController {
 
     @Autowired
-    BookService service;
+    BookService bookService;
+
+    @Autowired
+    ChapterService chapterService;
 
     @GetMapping
     public List<BookDTO> getAllBooks() {
-        return service.getAllBooks();
+        return bookService.getAllBooks();
     }
 
     @GetMapping("/{id}")
     public Optional<BookDTO> getBookById(@PathVariable UUID id) {
-        return service.getBookById(id);
+        return bookService.getBookById(id);
+    }
+
+    @GetMapping("/{id}/chapters")
+    public List<ChapterDTO> getAllChaptersByBookId(@PathVariable UUID id) {
+        return chapterService.getAllChaptersByBookId(id);
     }
 
     @PostMapping
     public void addBook(@RequestBody BookModel book) {
-        service.addBook(book);
+        bookService.addBook(book);
     }
 
     @DeleteMapping("/{id}")
     public void deleteBookById(@PathVariable UUID id) {
-        service.deleteBookById(id);
+        bookService.deleteBookById(id);
     }
 }
