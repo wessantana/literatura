@@ -1,5 +1,6 @@
 package com.literatura.literal.chapter;
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,11 @@ public class ChapterController {
     public ResponseEntity<ChapterDTO> addChapterToBook(@PathVariable UUID bookId, @RequestBody ChapterModel chapterModel) {
         ChapterDTO chapterDTO = chapterService.addChapterToBook(bookId, chapterModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(chapterDTO);
+    }
+
+    @DeleteMapping("/{chapterId}")
+    public ResponseEntity<Void> deleteChapterByBookId(@PathVariable UUID bookId, @PathVariable UUID chapterId) {
+        chapterService.deleteChapterByBookId(bookId, chapterId);
+        return ResponseEntity.noContent().build();
     }
 }
