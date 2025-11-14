@@ -39,6 +39,10 @@ public class ChapterService {
         chapterRepository.deleteChapterByBookId(bookId, chapterId);
     }
 
+    public void updateChapterByBookId(UUID bookId, UUID chapterId, ChapterModel chapterModel) {
+        chapterRepository.updateChapterByBookId(bookId, chapterId, chapterModel.getTitle(), chapterModel.getContent());
+    }
+
     private ChapterDTO convertChapterModelToDTO(ChapterModel chapterModel) {
         return new ChapterDTO(chapterModel);
     }

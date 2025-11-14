@@ -33,4 +33,14 @@ public class ChapterController {
         chapterService.deleteChapterByBookId(bookId, chapterId);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{chapterId}")
+    public ResponseEntity<ChapterDTO> updateChapterByBookId(
+            @PathVariable UUID bookId,
+            @PathVariable UUID chapterId,
+            @RequestBody ChapterModel chapterModel
+    ) {
+        chapterService.updateChapterByBookId(bookId, chapterId, chapterModel);
+        return ResponseEntity.noContent().build();
+    }
 }

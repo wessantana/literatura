@@ -18,4 +18,19 @@ public interface ChapterRepository extends JpaRepository<ChapterModel, UUID> {
     @Transactional
     @Query(value = "DELETE FROM chapter WHERE id = :chapterId AND book_id = :bookId;", nativeQuery = true)
     public void deleteChapterByBookId(@Param("bookId") UUID bookId, @Param("chapterId") UUID chapterId);
+
+    @Modifying
+    @Transactional
+    @Query(value = """
+            UPDATE chapter
+            SET
+                title = CASE WHEN :newTitle IS NOT NULL THEN :newTitle ELSE title END,
+                content = CASE WHEN :newContent IS NOT NULL THEN :newContent ELSE content END
+            WHERE id = :chapterId AND book_id = :bookId;
+            """, nativeQuery = true)
+    public void updateChapterByBookId(
+            @Param("bookId") UUID bookId,
+            @Param("chapterId") UUID chapterId,
+            @Param("newTitle") String newTitle,
+            @Param("newContent") String newContent);
 }
