@@ -34,7 +34,7 @@ public class ChapterController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{chapterId}")
+    @PatchMapping("/{chapterId}")
     public ResponseEntity<ChapterDTO> updateChapterByBookId(
             @PathVariable UUID bookId,
             @PathVariable UUID chapterId,
