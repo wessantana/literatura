@@ -1,8 +1,10 @@
 package com.literatura.literal.book;
 
 import com.literatura.literal.chapter.ChapterDTO;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +30,32 @@ public class BookService {
 
     // implementar retorno de status code correto e talvez algum content
     public void deleteBookById(UUID id) { repository.deleteById(id); }
+
+    @Transactional
+    public void updateBookById(UUID id, UpdateBookRequestDTO bookRequest) {
+        BookModel book = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Error: Book not Found."));
+
+        if(bookRequest.getTitle() != null) {
+            book.setTitle(bookRequest.getTitle());
+        }
+
+        if(bookRequest.getSynopsis() != null) {
+            book.setSynopsis(bookRequest.getSynopsis());
+        }
+
+        if(bookRequest.getImageUrl() != null) {
+            book.setImageUrl(bookRequest.getImageUrl());
+        }
+
+        if(bookRequest.getTags() != null) {
+            book.getTags().clear();
+            book.getTags().addAll(bookRequest.getTags());
+
+        }
+
+        repository.save(book);
+    }
 
     private BookDTO convertBookModelToDTO(BookModel book) {
         return new BookDTO(book);

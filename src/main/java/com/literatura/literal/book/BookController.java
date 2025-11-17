@@ -37,4 +37,9 @@ public class BookController {
     public void deleteBookById(@PathVariable UUID id) {
         bookService.deleteBookById(id);
     }
+
+    @PatchMapping("/{id}")
+    public void updateBookById(@PathVariable UUID id, @RequestBody UpdateBookRequestDTO bookRequest) {
+        bookService.updateBookById(id, bookRequest);
+    }
 }
