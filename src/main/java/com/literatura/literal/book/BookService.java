@@ -1,6 +1,7 @@
 package com.literatura.literal.book;
 
 import com.literatura.literal.chapter.ChapterDTO;
+import com.literatura.literal.exceptions.BookNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,7 @@ public class BookService {
     @Transactional
     public void updateBookById(UUID id, UpdateBookRequestDTO bookRequest) {
         BookModel book = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Error: Book not Found."));
+                .orElseThrow(() -> new BookNotFoundException(id));
 
         if(bookRequest.getTitle() != null) {
             book.setTitle(bookRequest.getTitle());
